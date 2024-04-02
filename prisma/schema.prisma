@@ -1,0 +1,570 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Classe {
+  id_classe Int    @id @default(autoincrement())
+  classe    String @default("")
+
+  Linha        Linha[]
+  Tecido       Tecido[]
+  Agulha       Agulha[]
+  Movel        Movel[]
+  Insumo       Insumo[]
+  Maquina      Maquina[]
+  PecasProntas PecasProntas[]
+  Corte        Corte[]
+  Costura      Costura[]
+
+  @@map("classe")
+}
+
+model Categoria {
+  id_categoria Int    @id @default(autoincrement())
+  categoria    String
+
+  elastico     Elastico[]
+  Linha        Linha[]
+  Tecido       Tecido[]
+  Agulha       Agulha[]
+  Movel        Movel[]
+  Insumo       Insumo[]
+  Maquina      Maquina[]
+  PecasProntas PecasProntas[]
+  Costura      Costura[]
+
+  @@map("categoria")
+}
+
+model Peca {
+  id_peca Int    @id @default(autoincrement())
+  peca    String
+
+  PecasProntas PecasProntas[]
+  Corte        Corte[]
+  Costura      Costura[]
+
+  @@map("peca")
+}
+
+model MaquinaAgulha {
+  id_maquina_agulha Int    @id @default(autoincrement())
+  maquina           String
+
+  Agulha Agulha[]
+
+  @@map("maquina_agulha")
+}
+
+model EspecieAgulha {
+  id_especie_agulha Int    @id @default(autoincrement())
+  especie           String
+
+  Agulha Agulha[]
+
+  @@map("especie_agulha")
+}
+
+model MarcaAgulha {
+  id_marca_agulha Int    @id @default(autoincrement())
+  marca           String
+
+  Agulha Agulha[]
+
+  @@map("marca_agulha")
+}
+
+model MarcaMovel {
+  id_marca_movel Int    @id @default(autoincrement())
+  marca          String
+
+  Movel Movel[]
+
+  @@map("marca_movel")
+}
+
+model MarcaInsumo {
+  id_marca_insumo Int    @id @default(autoincrement())
+  insumo          String
+
+  Insumo Insumo[]
+
+  @@map("marca_insumo")
+}
+
+model MarcaMaquina {
+  id_marca_maquina Int    @id @default(autoincrement())
+  maquina          String
+
+  Maquina Maquina[]
+
+  @@map("marca_maquina")
+}
+
+model Usuario {
+  id_usuario   Int    @id @default(autoincrement())
+  username     String @unique
+  senha        String
+  id_permissao Int
+
+  Permissao Permissao @relation(fields: [id_permissao], references: [id_permissao])
+
+  @@map("usuario")
+}
+
+model TipoElastico {
+  id_tipo_elastico Int    @id @default(autoincrement())
+  tipo             String
+
+  elastico Elastico[]
+
+  @@map("tipo_elastico")
+}
+
+model TipoInsumo {
+  id_tipo_insumo Int    @id @default(autoincrement())
+  tipo           String
+
+  Insumo Insumo[]
+
+  @@map("tipo_insumo")
+}
+
+model TipoMaquina {
+  id_tipo_maquina Int    @id @default(autoincrement())
+  tipo            String
+
+  Maquina Maquina[]
+
+  @@map("tipo_maquina")
+}
+
+model TipoMovel {
+  id_tipo_movel Int    @id @default(autoincrement())
+  tipo          String
+
+  Movel Movel[]
+
+  @@map("tipo_movel")
+}
+
+model Unidade {
+  id_unidade Int    @id @default(autoincrement())
+  unidade    String
+  sigla      String
+
+  Elastico     Elastico[]
+  Linha        Linha[]
+  Tecido       Tecido[]
+  Agulha       Agulha[]
+  PecasProntas PecasProntas[]
+  Costura      Costura[]
+
+  @@map("unidade")
+}
+
+model Permissao {
+  id_permissao Int    @id @default(autoincrement())
+  descricao    String
+
+  usuario Usuario[]
+
+  @@map("permissao")
+}
+
+model Composicao {
+  id_composicao Int    @id @default(autoincrement())
+  composicao    String
+
+  elastico Elastico[]
+  Linha    Linha[]
+  Tecido   Tecido[]
+  Movel    Movel[]
+  Insumo   Insumo[]
+
+  @@map("composicao")
+}
+
+model MarcaElastico {
+  id_marca_elastico Int    @id @default(autoincrement())
+  marca             String
+
+  elastico Elastico[]
+
+  @@map("marca_elastico")
+}
+
+model TipoLinha {
+  id_tipo_linha Int    @id @default(autoincrement())
+  tipo          String
+
+  Linha Linha[]
+
+  @@map("tipo_linha")
+}
+
+model Embalagem {
+  id_embalagem Int    @id @default(autoincrement())
+  embalagem    String
+
+  Elastico Elastico[]
+  Linha    Linha[]
+  Tecido   Tecido[]
+
+  @@map("embalagem")
+}
+
+model Elastico {
+  id_elastico         Int       @id @default(autoincrement())
+  foto                String?
+  id_categoria        Int?
+  id_tipo_elastico    Int?
+  nome                String?
+  id_composicao       Int?
+  fornecedor          String?
+  id_marca_elastico   Int?
+  cor                 String?
+  ref                 String?
+  ref_inter           String?
+  qr_code             String?
+  largura             Int?
+  id_embalagem        Int?
+  id_unidade          Int?
+  estoque             Int?
+  valor               Int?
+  imposto             Int?
+  preco_final         Int?
+  valor_estoque_total Int?
+  aplicacao           String?
+  obs                 String?
+  estoque_minimo      Int?
+  em_falta            String?
+  data_compra         DateTime?
+
+  Categoria     Categoria?     @relation(fields: [id_categoria], references: [id_categoria])
+  Unidade       Unidade?       @relation(fields: [id_unidade], references: [id_unidade])
+  Embalagem     Embalagem?     @relation(fields: [id_embalagem], references: [id_embalagem])
+  MarcaElastico MarcaElastico? @relation(fields: [id_marca_elastico], references: [id_marca_elastico])
+  Composicao    Composicao?    @relation(fields: [id_composicao], references: [id_composicao])
+  TipoElastico  TipoElastico?  @relation(fields: [id_tipo_elastico], references: [id_tipo_elastico])
+
+  @@map("elastico")
+}
+
+model Linha {
+  id_linha            Int       @id @default(autoincrement())
+  foto                String?
+  id_categoria        Int?
+  id_classe           Int?
+  id_tipo_linha       Int?
+  id_composicao       Int?
+  fornecedor          String?
+  marca_linha         String?
+  cor                 String?
+  ref                 String?
+  num_pedido          Int?
+  qr_code             String?
+  tamanho             String?
+  quantidade          Int?
+  id_unidade          Int?
+  id_embalagem        Int?
+  estoque             Int?
+  valor               Int?
+  imposto             Int?
+  preco_final         Int?
+  valor_estoque_total Int?
+  obs                 String?
+  estoque_minimo      Int?
+  em_falta            String?
+  data_compra         DateTime?
+
+  Embalagem  Embalagem?  @relation(fields: [id_embalagem], references: [id_embalagem])
+  Unidade    Unidade?    @relation(fields: [id_unidade], references: [id_unidade])
+  Composicao Composicao? @relation(fields: [id_composicao], references: [id_composicao])
+  TipoLinha  TipoLinha?  @relation(fields: [id_tipo_linha], references: [id_tipo_linha])
+  Classe     Classe?     @relation(fields: [id_classe], references: [id_classe])
+  Categoria  Categoria?  @relation(fields: [id_categoria], references: [id_categoria])
+
+  @@map("linha")
+}
+
+model Tecido {
+  id_tecido           Int       @id @default(autoincrement())
+  foto                String?
+  id_categoria        Int?
+  id_classe           Int?
+  tipo_tecido         String?
+  id_composicao       Int?
+  fornecedor          String?
+  marca_linha         String?
+  importado           String?
+  estampado           String?
+  cor                 String?
+  estampa             String?
+  ref                 String?
+  num_pedido          Int?
+  qr_code             String?
+  ramado              String?
+  plano               String?
+  largura             Int?
+  gramatura           Int?
+  id_unidade          Int?
+  rendimento          Int?
+  tamanho             String?
+  qantidade           Int?
+  id_embalagem        Int?
+  estoque             Int?
+  valor               Int?
+  imposto             Int?
+  preco_final         Int?
+  valor_estoque_total Int?
+  aplicacao           String?
+  obs                 String?
+  estoque_minimo      Int?
+  em_falta            String?
+  data_compra         DateTime?
+
+  PecasProntas PecasProntas[]
+  Corte        Corte[]
+  Costura      Costura[]
+
+  Categoria  Categoria?  @relation(fields: [id_categoria], references: [id_categoria])
+  Unidade    Unidade?    @relation(fields: [id_unidade], references: [id_unidade])
+  Classe     Classe?     @relation(fields: [id_classe], references: [id_classe])
+  Composicao Composicao? @relation(fields: [id_composicao], references: [id_composicao])
+  Embalagem  Embalagem?  @relation(fields: [id_embalagem], references: [id_embalagem])
+
+  @@map("tecido")
+}
+
+model Agulha {
+  id_agulha           Int      @id @default(autoincrement())
+  id_classe           Int
+  foto                String
+  id_categoria        Int
+  id_maquina_agulha   Int
+  id_especie_agulha   Int
+  fornecedor          String
+  id_marca_agulha     Int
+  ref                 String
+  num_pedido          Int
+  qr_code             String
+  tamanho             String
+  estoque             Int
+  id_unidade          Int
+  valor               Int
+  imposto             Int
+  preco_final         Int
+  valor_estoque_total Int
+  aplicacao           String
+  obs                 String
+  estoque_minimo      Int
+  em_falta            String
+  data_compra         DateTime
+
+  Classe        Classe        @relation(fields: [id_classe], references: [id_classe])
+  Categoria     Categoria     @relation(fields: [id_categoria], references: [id_categoria])
+  MaquinaAgulha MaquinaAgulha @relation(fields: [id_maquina_agulha], references: [id_maquina_agulha])
+  EspecieAgulha EspecieAgulha @relation(fields: [id_especie_agulha], references: [id_especie_agulha])
+  MarcaAgulha   MarcaAgulha   @relation(fields: [id_marca_agulha], references: [id_marca_agulha])
+  Unidade       Unidade       @relation(fields: [id_unidade], references: [id_unidade])
+
+  @@map("agulha")
+}
+
+model Movel {
+  id_movel            Int      @id @default(autoincrement())
+  id_classe           Int
+  id_categoria        Int
+  id_tipo_movel       Int
+  id_composicao       Int
+  fornecedor          String
+  id_marca_movel      Int
+  cor                 String
+  estoque             Int
+  valor               Int
+  imposto             Int
+  preco_final         Int
+  valor_estoque_total Int
+  aplicacao           String
+  obs                 String
+  estoque_minimo      Int
+  em_falta            String
+  data_compra         DateTime
+
+  Classe     Classe     @relation(fields: [id_classe], references: [id_classe])
+  Categoria  Categoria  @relation(fields: [id_categoria], references: [id_categoria])
+  TipoMovel  TipoMovel  @relation(fields: [id_tipo_movel], references: [id_tipo_movel])
+  Composicao Composicao @relation(fields: [id_composicao], references: [id_composicao])
+  MarcaMovel MarcaMovel @relation(fields: [id_marca_movel], references: [id_marca_movel])
+
+  @@map("movel")
+}
+
+model Insumo {
+  id_insumo           Int      @id @default(autoincrement())
+  id_classe           Int
+  id_categoria        Int
+  id_tipo_insumo      Int
+  id_composicao       Int
+  fornecedor          String
+  id_marca_insumo     Int
+  cor                 String
+  ref                 String
+  ref_inter           String
+  qr_code             String
+  tamanho             String
+  quantidade          Int
+  embalagem           String
+  estoque             String
+  valor               Int
+  imposto             Int
+  preco_final         Int
+  valor_estoque_total Int
+  aplicacao           String
+  obs                 String
+  estoque_minimo      String
+  em_falta            String
+  data_compra         DateTime
+
+  Classe      Classe      @relation(fields: [id_classe], references: [id_classe])
+  Categoria   Categoria   @relation(fields: [id_categoria], references: [id_categoria])
+  TipoInsumo  TipoInsumo  @relation(fields: [id_tipo_insumo], references: [id_tipo_insumo])
+  Composicao  Composicao  @relation(fields: [id_composicao], references: [id_composicao])
+  MarcaInsumo MarcaInsumo @relation(fields: [id_marca_insumo], references: [id_marca_insumo])
+
+  @@map("insumo")
+}
+
+model Maquina {
+  id_maquina          Int      @id @default(autoincrement())
+  id_classe           Int
+  id_categoria        Int
+  id_tipo_maquina     Int
+  fornecedor          String
+  id_marca_maquina    Int
+  cor                 String
+  ref                 String
+  ref_inter           String
+  qr_code             String
+  estoque             String
+  valor               Int
+  imposto             Int
+  preco_final         Int
+  valor_estoque_total Int
+  aplicacao           String
+  obs                 String
+  estoque_minimo      Int
+  em_falta            String
+  data_compra         DateTime
+
+  Classe       Classe       @relation(fields: [id_classe], references: [id_classe])
+  Categoria    Categoria    @relation(fields: [id_categoria], references: [id_categoria])
+  TipoMaquina  TipoMaquina  @relation(fields: [id_tipo_maquina], references: [id_tipo_maquina])
+  MarcaMaquina MarcaMaquina @relation(fields: [id_marca_maquina], references: [id_marca_maquina])
+
+  @@map("maquina")
+}
+
+model PecasProntas {
+  id_pecas_prontas    Int      @id @default(autoincrement())
+  id_classe           Int
+  id_categoria        Int
+  id_peca             Int
+  id_tecido           Int
+  fornecedor          String
+  cor                 String
+  estampa             String
+  modelo              String
+  ref                 String
+  detalhe             String
+  cor_detalhe         String
+  tamanho             String
+  id_unidade          Int
+  marca               String
+  estoque             String
+  valor               Int
+  valor_estoque_total Int
+  obs                 String
+  estoque_minimo      Int
+  em_falta            String
+  data_compra         DateTime
+
+  Classe    Classe    @relation(fields: [id_classe], references: [id_classe])
+  Categoria Categoria @relation(fields: [id_categoria], references: [id_categoria])
+  Peca      Peca      @relation(fields: [id_peca], references: [id_peca])
+  Tecido    Tecido    @relation(fields: [id_tecido], references: [id_tecido])
+  Unidade   Unidade   @relation(fields: [id_unidade], references: [id_unidade])
+
+  @@map("pecas_prontas")
+}
+
+model Corte {
+  id_corte       Int      @id @default(autoincrement())
+  id_classe      Int
+  data           DateTime
+  ref            String
+  id_peca        Int
+  id_tecido      Int
+  modelo         String
+  pedido         String
+  risco          String
+  peso           String
+  rendimento     String
+  pecas          String
+  aproveitamento String
+  rolos          Int
+  camadas        Int
+  total_pecas    Int
+  infantil       Int
+  adulto         Int
+  extra          Int
+  marca          String
+  vrl_custo      String
+  vlr_venda      String
+  lucro          String
+
+  Classe Classe @relation(fields: [id_classe], references: [id_classe])
+  Peca   Peca   @relation(fields: [id_peca], references: [id_peca])
+  Tecido Tecido @relation(fields: [id_tecido], references: [id_tecido])
+
+  @@map("corte")
+}
+
+model Costura {
+  id_costura   Int      @id @default(autoincrement())
+  id_classe    Int
+  id_categoria Int
+  id_peca      Int
+  id_tecido    Int
+  fornecedor   String
+  cor          String
+  estampa      String
+  modelo       String
+  ref          String
+  detalhe      String
+  cor_detalhe  String
+  tamanho      String
+  id_unidade   Int
+  marca        String
+  data_corte   DateTime
+  total        Int
+  data_entrada DateTime
+  costura      String
+  data_saida   DateTime
+  falta        String
+  obs          String
+
+  Classe    Classe    @relation(fields: [id_classe], references: [id_classe])
+  Tecido    Tecido    @relation(fields: [id_tecido], references: [id_tecido])
+  Categoria Categoria @relation(fields: [id_categoria], references: [id_categoria])
+  Peca      Peca      @relation(fields: [id_peca], references: [id_peca])
+  Unidade   Unidade   @relation(fields: [id_unidade], references: [id_unidade])
+
+  @@map("costura")
+}
