@@ -127,8 +127,8 @@ model TipoElastico {
 }
 
 model TipoInsumo {
-  id_tipo_insumo Int    @id @default(autoincrement())
-  tipo           String
+  id_tipo_insumo Int     @id @default(autoincrement())
+  tipo           String?
 
   Insumo Insumo[]
 
@@ -136,8 +136,8 @@ model TipoInsumo {
 }
 
 model TipoMaquina {
-  id_tipo_maquina Int    @id @default(autoincrement())
-  tipo            String
+  id_tipo_maquina Int     @id @default(autoincrement())
+  tipo            String?
 
   Maquina Maquina[]
 
@@ -145,8 +145,8 @@ model TipoMaquina {
 }
 
 model TipoMovel {
-  id_tipo_movel Int    @id @default(autoincrement())
-  tipo          String
+  id_tipo_movel Int     @id @default(autoincrement())
+  tipo          String?
 
   Movel Movel[]
 
@@ -343,36 +343,36 @@ model Tecido {
 }
 
 model Agulha {
-  id_agulha           Int      @id @default(autoincrement())
-  id_classe           Int
-  foto                String
-  id_categoria        Int
-  id_maquina_agulha   Int
-  id_especie_agulha   Int
-  fornecedor          String
-  id_marca_agulha     Int
-  ref                 String
-  num_pedido          Int
-  qr_code             String
-  tamanho             String
-  estoque             Int
-  id_unidade          Int
-  valor               Int
-  imposto             Int
-  preco_final         Int
-  valor_estoque_total Int
-  aplicacao           String
-  obs                 String
-  estoque_minimo      Int
-  em_falta            String
-  data_compra         DateTime
+  id_agulha           Int       @id @default(autoincrement())
+  id_classe           Int?
+  foto                String?
+  id_categoria        Int?
+  id_maquina_agulha   Int?
+  id_especie_agulha   Int?
+  fornecedor          String?
+  id_marca_agulha     Int?
+  ref                 String?
+  num_pedido          Int?
+  qr_code             String?
+  tamanho             String?
+  estoque             Int?
+  id_unidade          Int?
+  valor               Int?
+  imposto             Int?
+  preco_final         Int?
+  valor_estoque_total Int?
+  aplicacao           String?
+  obs                 String?
+  estoque_minimo      Int?
+  em_falta            String?
+  data_compra         DateTime?
 
-  Classe        Classe        @relation(fields: [id_classe], references: [id_classe])
-  Categoria     Categoria     @relation(fields: [id_categoria], references: [id_categoria])
-  MaquinaAgulha MaquinaAgulha @relation(fields: [id_maquina_agulha], references: [id_maquina_agulha])
-  EspecieAgulha EspecieAgulha @relation(fields: [id_especie_agulha], references: [id_especie_agulha])
-  MarcaAgulha   MarcaAgulha   @relation(fields: [id_marca_agulha], references: [id_marca_agulha])
-  Unidade       Unidade       @relation(fields: [id_unidade], references: [id_unidade])
+  Classe        Classe?        @relation(fields: [id_classe], references: [id_classe])
+  Categoria     Categoria?     @relation(fields: [id_categoria], references: [id_categoria])
+  MaquinaAgulha MaquinaAgulha? @relation(fields: [id_maquina_agulha], references: [id_maquina_agulha])
+  EspecieAgulha EspecieAgulha? @relation(fields: [id_especie_agulha], references: [id_especie_agulha])
+  MarcaAgulha   MarcaAgulha?   @relation(fields: [id_marca_agulha], references: [id_marca_agulha])
+  Unidade       Unidade?       @relation(fields: [id_unidade], references: [id_unidade])
 
   @@map("agulha")
 }

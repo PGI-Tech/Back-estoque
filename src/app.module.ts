@@ -18,9 +18,13 @@ import { TipoLinhaModule } from './controllers/tipo-linha/tipo-linha.module';
 import { ElasticoModule } from './controllers/elastico/elastico.module';
 import { LinhaModule } from './controllers/linha/linha.module';
 import { TecidoModule } from './controllers/tecido/tecido.module';
+import { AgulhaModule } from './controllers/agulha/agulha.module';
+import { TipoMovelModule } from './controllers/tipo-movel/tipo-movel.module';
+import { TipoInsumoModule } from './controllers/tipo-insumo/tipo-insumo.module';
+import { TipoMaquinaModule } from './controllers/tipo-maquina/tipo-maquina.module';
 
 @Module({
-  imports: [ClasseModule, CategoriaModule, UnidadeModule, PermissoesModule, UsuariosModule, ComposicaoModule, EmbalagemModule, MaquinaAgulhaModule, EspecieAgulhaModule, MarcaAgulhaModule, TipoElasticoModule, MarcaElasticoModule, TipoLinhaModule, ElasticoModule, LinhaModule, TecidoModule],
+  imports: [ClasseModule, CategoriaModule, UnidadeModule, PermissoesModule, UsuariosModule, ComposicaoModule, EmbalagemModule, MaquinaAgulhaModule, EspecieAgulhaModule, MarcaAgulhaModule, TipoElasticoModule, MarcaElasticoModule, TipoLinhaModule, ElasticoModule, LinhaModule, TecidoModule, AgulhaModule, TipoMovelModule, TipoInsumoModule, TipoMaquinaModule],
   controllers: [AppController],
   providers: [AppService],
 })
