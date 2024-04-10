@@ -22,9 +22,13 @@ import { AgulhaModule } from './controllers/agulha/agulha.module';
 import { TipoMovelModule } from './controllers/tipo-movel/tipo-movel.module';
 import { TipoInsumoModule } from './controllers/tipo-insumo/tipo-insumo.module';
 import { TipoMaquinaModule } from './controllers/tipo-maquina/tipo-maquina.module';
+import { MarcaMovelModule } from './controllers/marca-movel/marca-movel.module';
+import { MarcaInsumoModule } from './controllers/marca-insumo/marca-insumo.module';
+import { PecasProntasModule } from './controllers/pecas-prontas/pecas-prontas.module';
+import { MarcaMaquinaModule } from './controllers/marca-maquina/marca-maquina.module';
 
 @Module({
-  imports: [ClasseModule, CategoriaModule, UnidadeModule, PermissoesModule, UsuariosModule, ComposicaoModule, EmbalagemModule, MaquinaAgulhaModule, EspecieAgulhaModule, MarcaAgulhaModule, TipoElasticoModule, MarcaElasticoModule, TipoLinhaModule, ElasticoModule, LinhaModule, TecidoModule, AgulhaModule, TipoMovelModule, TipoInsumoModule, TipoMaquinaModule],
+  imports: [ClasseModule, CategoriaModule, UnidadeModule, PermissoesModule, UsuariosModule, ComposicaoModule, EmbalagemModule, MaquinaAgulhaModule, EspecieAgulhaModule, MarcaAgulhaModule, TipoElasticoModule, MarcaElasticoModule, TipoLinhaModule, ElasticoModule, LinhaModule, TecidoModule, AgulhaModule, TipoMovelModule, TipoInsumoModule, TipoMaquinaModule, MarcaMovelModule, MarcaInsumoModule, PecasProntasModule, MarcaMaquinaModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -21,7 +21,7 @@ export class CreateTecidoDto {
     gramatura?: number;
     id_unidade?: number;
     rendimento?: number;
-    tamanho?: string;
+    tamanho?: number;
     quantidade?: number;
     id_embalagem?: number;
     estoque?: number;

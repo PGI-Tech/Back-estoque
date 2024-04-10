@@ -11,7 +11,7 @@ export class CreateAgulhaDto {
     ref?: string;
     num_pedido?: number;
     qr_code?: string;
-    tamanho?: string;
+    tamanho?: number;
     estoque?: number;
     id_unidade?: number;
     valor?: number;

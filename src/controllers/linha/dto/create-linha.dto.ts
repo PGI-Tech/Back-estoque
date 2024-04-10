@@ -12,7 +12,7 @@ export class CreateLinhaDto {
     ref?: string;
     num_pedido?: number;
     qr_code?: string;
-    tamanho?: string;
+    tamanho?: number;
     quantidade?: number;
     id_unidade?: number;
     id_embalagem?: number;

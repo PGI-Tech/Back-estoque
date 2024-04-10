@@ -10,8 +10,8 @@ export class ElasticoService {
 
   // CREATE todo
   async create(data: CreateElasticoDto) {
-    const new_preco_final = data.valor * (1 + (data.imposto / 100));
-    const new_valor_estoque_total = data.estoque * new_preco_final;
+    const new_preco_final = Math.floor(data.valor * (1 + (data.imposto / 100)) * 100) / 100;
+    const new_valor_estoque_total = Math.floor(data.estoque * new_preco_final * 100) / 100;
     let new_em_falta = 'NAO';
     if (data.estoque <= data.estoque_minimo) {
       new_em_falta = 'SIM';
@@ -55,8 +55,8 @@ export class ElasticoService {
       throw new Error('Este item não existe!');
     };
 
-    const new_preco_final = data.valor * (1 + (data.imposto / 100));
-    const new_valor_estoque_total = data.estoque * new_preco_final;
+    const new_preco_final = Math.floor(data.valor * (1 + (data.imposto / 100)) * 100) / 100;
+    const new_valor_estoque_total = Math.floor(data.estoque * new_preco_final * 100) / 100;
     let new_em_falta = 'NAO';
     if (data.estoque <= data.estoque_minimo) {
       new_em_falta = 'SIM';

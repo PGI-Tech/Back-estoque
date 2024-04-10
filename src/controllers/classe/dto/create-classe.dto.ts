@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
 export class CreateClasseDto {
-    id_classe?: number;
-    classe: string;
+    id_classe: number;
+    classe?: string;
 }
