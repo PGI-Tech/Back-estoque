@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Classe {
-  id_classe Int     @id @default(autoincrement())
-  classe    String? @default("")
+  id_classe Int    @id @default(autoincrement())
+  classe    String @default("")
 
   Linha        Linha[]
   Tecido       Tecido[]
@@ -25,8 +25,8 @@ model Classe {
 }
 
 model Categoria {
-  id_categoria Int     @id @default(autoincrement())
-  categoria    String?
+  id_categoria Int    @id @default(autoincrement())
+  categoria    String
 
   elastico     Elastico[]
   Linha        Linha[]
@@ -42,8 +42,8 @@ model Categoria {
 }
 
 model MaquinaAgulha {
-  id_maquina_agulha Int     @id @default(autoincrement())
-  maquina           String?
+  id_maquina_agulha Int    @id @default(autoincrement())
+  maquina           String
 
   Agulha Agulha[]
 
@@ -51,8 +51,8 @@ model MaquinaAgulha {
 }
 
 model EspecieAgulha {
-  id_especie_agulha Int     @id @default(autoincrement())
-  especie           String?
+  id_especie_agulha Int    @id @default(autoincrement())
+  especie           String
 
   Agulha Agulha[]
 
@@ -60,8 +60,8 @@ model EspecieAgulha {
 }
 
 model MarcaAgulha {
-  id_marca_agulha Int     @id @default(autoincrement())
-  marca           String?
+  id_marca_agulha Int    @id @default(autoincrement())
+  marca           String
 
   Agulha Agulha[]
 
@@ -69,8 +69,8 @@ model MarcaAgulha {
 }
 
 model MarcaMovel {
-  id_marca_movel Int     @id @default(autoincrement())
-  marca          String?
+  id_marca_movel Int    @id @default(autoincrement())
+  marca          String
 
   Movel Movel[]
 
@@ -78,8 +78,8 @@ model MarcaMovel {
 }
 
 model MarcaInsumo {
-  id_marca_insumo Int     @id @default(autoincrement())
-  marca           String?
+  id_marca_insumo Int    @id @default(autoincrement())
+  marca           String
 
   Insumo Insumo[]
 
@@ -87,8 +87,8 @@ model MarcaInsumo {
 }
 
 model MarcaMaquina {
-  id_marca_maquina Int     @id @default(autoincrement())
-  marca            String?
+  id_marca_maquina Int    @id @default(autoincrement())
+  marca            String
 
   Maquina Maquina[]
 
@@ -96,19 +96,19 @@ model MarcaMaquina {
 }
 
 model Usuario {
-  id_usuario   Int     @id @default(autoincrement())
-  username     String? @unique
-  senha        String?
-  id_permissao Int?
+  id_usuario   Int    @id @default(autoincrement())
+  username     String @unique
+  senha        String
+  id_permissao Int
 
-  Permissao Permissao? @relation(fields: [id_permissao], references: [id_permissao])
+  Permissao Permissao @relation(fields: [id_permissao], references: [id_permissao])
 
   @@map("usuario")
 }
 
 model TipoElastico {
-  id_tipo_elastico Int     @id @default(autoincrement())
-  tipo             String?
+  id_tipo_elastico Int    @id @default(autoincrement())
+  tipo             String
 
   elastico Elastico[]
 
@@ -116,8 +116,8 @@ model TipoElastico {
 }
 
 model TipoInsumo {
-  id_tipo_insumo Int     @id @default(autoincrement())
-  tipo           String?
+  id_tipo_insumo Int    @id @default(autoincrement())
+  tipo           String
 
   Insumo Insumo[]
 
@@ -125,8 +125,8 @@ model TipoInsumo {
 }
 
 model TipoMaquina {
-  id_tipo_maquina Int     @id @default(autoincrement())
-  tipo            String?
+  id_tipo_maquina Int    @id @default(autoincrement())
+  tipo            String
 
   Maquina Maquina[]
 
@@ -134,8 +134,8 @@ model TipoMaquina {
 }
 
 model TipoMovel {
-  id_tipo_movel Int     @id @default(autoincrement())
-  tipo          String?
+  id_tipo_movel Int    @id @default(autoincrement())
+  tipo          String
 
   Movel Movel[]
 
@@ -143,9 +143,9 @@ model TipoMovel {
 }
 
 model Unidade {
-  id_unidade Int     @id @default(autoincrement())
-  unidade    String?
-  sigla      String?
+  id_unidade Int    @id @default(autoincrement())
+  unidade    String
+  sigla      String
 
   Elastico     Elastico[]
   Linha        Linha[]
@@ -158,8 +158,8 @@ model Unidade {
 }
 
 model Permissao {
-  id_permissao Int     @id @default(autoincrement())
-  descricao    String?
+  id_permissao Int    @id @default(autoincrement())
+  descricao    String
 
   usuario Usuario[]
 
@@ -167,8 +167,8 @@ model Permissao {
 }
 
 model Composicao {
-  id_composicao Int     @id @default(autoincrement())
-  composicao    String?
+  id_composicao Int    @id @default(autoincrement())
+  composicao    String
 
   elastico Elastico[]
   Linha    Linha[]
@@ -180,8 +180,8 @@ model Composicao {
 }
 
 model MarcaElastico {
-  id_marca_elastico Int     @id @default(autoincrement())
-  marca             String?
+  id_marca_elastico Int    @id @default(autoincrement())
+  marca             String
 
   elastico Elastico[]
 
@@ -189,8 +189,8 @@ model MarcaElastico {
 }
 
 model TipoLinha {
-  id_tipo_linha Int     @id @default(autoincrement())
-  tipo          String?
+  id_tipo_linha Int    @id @default(autoincrement())
+  tipo          String
 
   Linha Linha[]
 
@@ -198,8 +198,8 @@ model TipoLinha {
 }
 
 model Embalagem {
-  id_embalagem Int     @id @default(autoincrement())
-  embalagem    String?
+  id_embalagem Int    @id @default(autoincrement())
+  embalagem    String
 
   Elastico Elastico[]
   Linha    Linha[]
