@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
+/* eslnumber-disable prettier/prettier */
 export class CreateElasticoDto {
-    id_elastico?: number;
+    id_elastico: number;
     foto?: string;
     id_categoria?: number;
     id_tipo_elastico?: number;
@@ -10,7 +11,7 @@ export class CreateElasticoDto {
     id_marca_elastico?: number;
     cor?: string;
     ref?: string;
-    ref_inter?: string;
+    ref_numberer?: string;
     qr_code?: string;
     largura?: number;
     id_embalagem?: number;

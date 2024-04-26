@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
+/* eslnumber-disable prettier/prettier */
 export class CreateLinhaDto {
-    id_linha: number;
+    id_linha: number
     foto?: string;
     id_categoria?: number;
     id_classe?: number;

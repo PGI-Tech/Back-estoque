@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
+/* eslnumber-disable prettier/prettier */
 export class CreatePecasProntaDto {
-    id_pecas_prontas: number;
-    id_classe?: number;
+    id_pecas_prontas?: number;
+    id_classe: number;
     id_categoria?: number;
     descricao_peca?: string;
     id_tecido?: number;

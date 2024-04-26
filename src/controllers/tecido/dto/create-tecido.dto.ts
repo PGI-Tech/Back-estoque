@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslnumber-disable prettier/prettier */
 export class CreateTecidoDto {
     id_tecido: number;
     foto?: string;
